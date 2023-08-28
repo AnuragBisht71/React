@@ -4,7 +4,7 @@ import "./App.css";
 class App extends React.Component {
 
   state = {
-    tasks: ["go for a jog", "make coffee", "make notes"],
+    tasks: ["Make notes"],
     currInput: "",
   }
 
@@ -13,11 +13,13 @@ class App extends React.Component {
     return (
       <div>
 
-        <input className="input-box" type="text" onChange={(e) => {
-          this.setState({
-            currInput: e.currentTarget.value
-          })
-        }}
+        <input className="input-box" type="text"
+
+          onChange={(e) => {
+            this.setState({
+              currInput: e.currentTarget.value
+            })
+          }}
 
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
@@ -35,7 +37,18 @@ class App extends React.Component {
 
           {
             this.state.tasks.map((el) => {
-              return <li>{el}</li>;
+              return <li>{el} <button
+                onClick={() => {
+
+                  let currTaskArr = this.state.tasks;
+
+                  let filteredTaskArr = currTaskArr.filter((element) => {
+                    return element != el;
+                  })
+
+                  this.setState({ tasks: filteredTaskArr });
+
+                }}>Delete</button></li>;
             })
           }
 
