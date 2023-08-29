@@ -46,7 +46,9 @@ class App extends React.Component {
                     return element != el;
                   })
 
-                  this.setState({ tasks: filteredTaskArr });
+                  this.setState({
+                    tasks: filteredTaskArr
+                  });
 
                 }}>Delete</button></li>;
             })
