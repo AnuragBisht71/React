@@ -26,7 +26,7 @@ class App extends React.Component {
     let currTaskArr = this.state.tasks;
 
     let filteredTaskArr = currTaskArr.filter((element) => {
-      return element != singleTask;
+      return element !== singleTask;
     });
 
     this.setState({
