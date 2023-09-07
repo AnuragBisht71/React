@@ -1,11 +1,25 @@
 import React from "react";
 import "./App.css";
 import List from "./List";
+import Input from "./Input";
 
 class App extends React.Component {
   state = {
     tasks: ["Make notes"],
     currInput: "",
+  };
+
+  handleCurrInput = (value) => {
+    this.setState({
+      currInput: value,
+    });
+  };
+
+  handleTask = () => {
+    this.setState({
+      tasks: [...this.state.tasks, this.state.currInput],
+      currInput: "",
+    });
   };
 
   deleteTask = (singleTask) => {
@@ -23,25 +37,11 @@ class App extends React.Component {
   render = () => {
     return (
       <div>
-        <input
-          className="input-box"
-          type="text"
-          onChange={(e) => {
-            this.setState({
-              currInput: e.currentTarget.value,
-            });
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              this.setState({
-                tasks: [...this.state.tasks, this.state.currInput],
-                currInput: "",
-              });
-            }
-          }}
-          value={this.state.currInput}
+        <Input
+          handleCurrInput={this.handleCurrInput}
+          handleTask={this.handleTask}
+          currInput={this.state.currInput}
         />
-
         <List tasks={this.state.tasks} deleteTask={this.deleteTask} />
       </div>
     );
